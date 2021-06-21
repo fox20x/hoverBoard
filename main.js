@@ -6,6 +6,7 @@ const colors = [ "white" , 'silver', '#777']
 
 let isMobile = false
 const docWidth = document.documentElement.offsetWidth
+alert(docWidth)
 
 if (docWidth < 550) {
   isMobile = true
