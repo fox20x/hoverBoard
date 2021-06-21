@@ -1,11 +1,23 @@
 const board = document.querySelector('#board')
-const SQUARE_COUNT = 460
+const touch_bar = document.querySelector('.touch_bar')
+const SQUARE_COUNT = 300
 //const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purpure',]
-const colors = [ "white" , 'silver', '333']
+const colors = [ "white" , 'silver', '#777']
+
+let isMobile = false
+const docWidth = document.documentElement.offsetWidth
+
+if (docWidth < 550) {
+  isMobile = true
+} else {
+  isMobile = false
+}
 
 for (let i = 0; i < SQUARE_COUNT; i++) {
   const square = document.createElement('div')
   square.classList.add('square')
+
+  square.addEventListener( isMobile ? 'pointerover' : 'mouseover', (e) => { setColorMouse(e.target) })
 
   //square.addEventListener('mouseleave', (e) => { removeColor(e.target) })
 
@@ -13,30 +25,31 @@ for (let i = 0; i < SQUARE_COUNT; i++) {
 
   board.append(square)
 }
+board.addEventListener( isMobile ? 'pointerover' : 'mouseover', (e) => { 
+  if (e.target.className == "square" ) { setColorMouse(e.target) }
+})
 
-if (document.documentElement.offsetWidth < 550) {
-  board.addEventListener('pointermove', (e) => {
-    if (e.target.className != 'square') return
-    setColorMouse(e.target)
-  })
-} else {
-  board.addEventListener('mouseover', (e) => {
-    if (e.target.className != 'square') return
-    setColorMouse(e.target)
-  })
+let initPaddingBoard = () => {
+  const marginLR = Math.floor((docWidth - board.offsetWidth) / 2)
+  console.log(marginLR);
+  board.style.marginLeft = marginLR + 'px'
+  board.style.marginRight = marginLR + 'px'
+
+  touch_bar.style.marginLeft = marginLR + 'px'
+  touch_bar.style.marginRight = marginLR + 'px'
 }
-
+initPaddingBoard()
 
 function setColor(elem) {
   let color = getRandomColor()
   elem.style.backgroundColor = color
-  elem.style.boxShadow = `0 0 4px ${color}, 0 0 12px ${color}`
+  elem.style.boxShadow = `0 0 8px ${color}, 0 0 16px ${color}`
 }
 function setColorMouse(elem) {
   let color = getRandomColor()
   elem.style.backgroundColor = color
   elem.style.boxShadow = `0 0 4px ${color}, 0 0 12px ${color}`
-  setTimeout(() => { removeColor(elem) }, 2000)
+  setTimeout(() => { removeColor(elem) }, 1500)
 }
 
 function removeColor(elem) {
