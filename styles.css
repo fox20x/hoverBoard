@@ -18,7 +18,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   max-width: 400px;
-  max-height: 500px;
+  max-height: 580px;
 }
 
 .square {
@@ -42,7 +42,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  margin-top: 80px;
+  padding-top: 80px;
 }
 
 .touch_bar {

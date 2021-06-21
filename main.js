@@ -32,8 +32,11 @@ board.addEventListener( isMobile ? 'pointerover' : 'mouseover', (e) => {
 let initPaddingBoard = () => {
   const marginLR = Math.floor((docWidth - board.offsetWidth) / 2)
   console.log(marginLR);
-  board.style.marginLeft = marginLR + 'px'
-  board.style.marginRight = marginLR + 'px'
+
+  board.style.maxWidth = ( 400 + marginLR * 2 ) + 'px'
+
+  board.style.paddingLeft = marginLR + 'px'
+  board.style.paddingRight = marginLR + 'px'
 
   touch_bar.style.marginLeft = marginLR + 'px'
   touch_bar.style.marginRight = marginLR + 'px'
