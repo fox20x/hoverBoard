@@ -14,14 +14,17 @@ for (let i = 0; i < SQUARE_COUNT; i++) {
   board.append(square)
 }
 
-board.addEventListener('mouseover', (e) => {
-  if (e.target.className != 'square') return
-  setColorMouse(e.target)
-})
-board.addEventListener('pointermove', (e) => {
-  if (e.target.className != 'square') return
-  setColorMouse(e.target)
-})
+if (document.documentElement.offsetWidth < 550) {
+  board.addEventListener('pointermove', (e) => {
+    if (e.target.className != 'square') return
+    setColorMouse(e.target)
+  })
+} else {
+  board.addEventListener('mouseover', (e) => {
+    if (e.target.className != 'square') return
+    setColorMouse(e.target)
+  })
+}
 
 
 function setColor(elem) {
